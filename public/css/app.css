@@ -23622,3 +23622,10 @@ a.text-dark:focus {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
+  color: #191818;
+  background-color: #aecdee82;
+  font-weight: bold;
+  text-shadow: 4px 4px 6px #ffffff;
+}
+

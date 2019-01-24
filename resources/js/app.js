@@ -17,12 +17,15 @@ Vue.use(VueRouter)
 let routes = [
     { path: '/', component: require('./components/Dashboard.vue').default } ,
     { path: '/Dashboard', component: require('./components/Dashboard.vue').default },
-    { path: '/Profile', component: require('./components/Profile.vue').default }
+    { path: '/Profile', component: require('./components/Profile.vue').default } ,
+    { path: '/Users', component: require('./components/Users.vue').default }
   ]
 
   // create a router instance and path it the array of routers
   const router = new VueRouter({
-    routes // short for `routes: routes`
+    mode: 'history',
+    routes  , // short for `routes: routes` 
+    linkActiveClass: 'active'
   })
 
 /**

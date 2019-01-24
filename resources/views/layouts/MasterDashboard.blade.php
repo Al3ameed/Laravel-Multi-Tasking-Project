@@ -75,21 +75,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> 
-        <!-- Managment -->
-        <li class="nav-item has-treeview menu-close">
-            <router-link to="/Dashboard" class="nav-link bg-light">
-              <i class="nav-icon fas fa-cogs text-secondary"></i> &nbsp;
+          
+          <li class="nav-item">
+            <router-link to="/Dashboard" class="nav-link">
+              <i class="fas fa-tachometer-alt text-primary"></i>  &nbsp;
               <p>
                 Dashboard
-                <i class="right fas fa-angle-left"></i>
               </p>
             </router-link>
+          </li>
+        <!-- Managment -->
+        <li class="nav-item has-treeview menu-close">
+            <a href="/" class="nav-link">
+              <i class="nav-icon fas fa-cogs text-secondary"></i> &nbsp;
+              <p>
+                Manage
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <!-- <i class="fa fa-circle-o nav-icon"></i> -->
+                <router-link to="/Users" class="nav-link">
+                  <i class="fas fa-users-cog nav-icon text-dark"></i>
                   <p>Manage Users</p>
-                </a>
+                </router-link>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -108,8 +117,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
           </li>
+
           <li class="nav-item">
-            <a href="/Dashboard" class="nav-link">
+          <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="nav-link">
               <i class="fas fa-power-off text-danger fa-lg"></i> &nbsp;
               <p>
                 Log-out 
@@ -117,6 +127,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          {{-- A hidden form to logout --}}
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
