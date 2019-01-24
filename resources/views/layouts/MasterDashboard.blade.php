@@ -18,7 +18,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper" id="app">
+<div class="wrapper" id="app" >
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
@@ -66,19 +66,54 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="/img/manager.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">User Name</a>
+          @auth
+            <a href="#" class="d-block">{{Auth::user()->name}}  </a>
+          @endauth
         </div>
       </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-th"></i>
+        <!-- Managment -->
+        <li class="nav-item has-treeview menu-close">
+            <router-link to="/Dashboard" class="nav-link bg-light">
+              <i class="nav-icon fas fa-cogs text-secondary"></i> &nbsp;
               <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
+                Dashboard
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </router-link>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link active">
+                  <!-- <i class="fa fa-circle-o nav-icon"></i> -->
+                  <p>Manage Users</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <!-- <i class="fa fa-circle-o nav-icon"></i> -->
+                  <p>Manage Teachers</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        <!-- Links    -->
+        <li class="nav-item">
+            <router-link to='/Profile' class="nav-link">
+              <i class="fas fa-user-circle fa-lg text-info"></i>  &nbsp;
+              <p>
+                Profile
+              </p>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <a href="/Dashboard" class="nav-link">
+              <i class="fas fa-power-off text-danger fa-lg"></i> &nbsp;
+              <p>
+                Log-out 
+              <!-- <span class="right badge badge-danger ">New</span> -->
               </p>
             </a>
           </li>
@@ -95,15 +130,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Admin DashBoard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
+        
+          <div class="col-sm-12 mb-3">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
               <li class="breadcrumb-item active">Starter Page</li>
             </ol>
-          </div><!-- /.col -->
+          </div>
+
+          <div class="col-sm-12">
+            <!-- Here is Vue.js SPA Content -->
+            <router-view></router-view>
+            <!-- Here is Vue.js SPA Content -->
+          </div>
+
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>

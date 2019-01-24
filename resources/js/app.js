@@ -7,7 +7,23 @@
 
 require('./bootstrap');
 
+// first require Vue & Vue Router
 window.Vue = require('vue');
+
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+
+// second define our routes
+let routes = [
+    { path: '/', component: require('./components/Dashboard.vue').default } ,
+    { path: '/Dashboard', component: require('./components/Dashboard.vue').default },
+    { path: '/Profile', component: require('./components/Profile.vue').default }
+  ]
+
+  // create a router instance and path it the array of routers
+  const router = new VueRouter({
+    routes // short for `routes: routes`
+  })
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,7 +36,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('dashboard-component', require('./components/Dashboard.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,5 +45,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
-    el: '#app'
-});
+  router
+}).$mount('#app')
